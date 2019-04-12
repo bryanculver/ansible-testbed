@@ -1,0 +1,12 @@
+- import_tasks: install.yml
+- import_tasks: base.yml
+  connection: local
+- import_tasks: dhcp.yml
+  connection: local
+  when: dnsmasq.dhcp is defined
+- import_tasks: dns.yml
+  connection: local
+  when: dnsmasq.dns is defined
+- import_tasks: assemble.yml
+  connection: local
+- import_tasks: apply.yml

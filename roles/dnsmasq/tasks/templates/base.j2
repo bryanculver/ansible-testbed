@@ -1,0 +1,13 @@
+domain-needed
+bogus-priv
+no-resolv
+no-poll
+local=/examplenet.com/
+{% for interface in dnsmasq.interfaces %}
+interface={{ interface }}
+
+{% endfor %}
+{% for address in dnsmasq.listen_addresses %}
+listen-address={{ address }}
+
+{% endfor %}

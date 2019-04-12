@@ -1,0 +1,6 @@
+- name: "Create Build Folder"
+  file: path=./build/{{ inventory_hostname }}/ state=directory
+- name: "Assemble Config File"
+  assemble:
+    src: ./staging/{{ inventory_hostname }}/dnsmasq
+    dest: ./build/{{ inventory_hostname }}/dnsmasq.conf

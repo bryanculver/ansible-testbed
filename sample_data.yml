@@ -1,0 +1,65 @@
+---
+dnsmasq:
+  interfaces:
+    - ens2
+  listen_addresses:
+    - 10.0.0.254
+  dhcp:
+    ranges:
+      - name: infrastructure
+        range_start: 10.0.0.100
+        range_end: 10.0.0.200
+        lease: 72h
+        options:
+          - tag: 1
+            value: 255.255.255.0
+          - tag: 3
+            value: 10.0.0.1
+          - tag: 4
+            value: 10.0.0.254
+          - tag: 6
+            value: 10.0.0.254
+          - tag: 7
+            value: 10.0.0.254
+      - name: platform
+        range_start: 10.0.2.100
+        range_end: 10.0.2.200
+        lease: 72h
+        options:
+          - tag: 1
+            value: 255.255.255.0
+          - tag: 3
+            value: 10.0.0.1
+          - tag: 4
+            value: 10.0.0.254
+          - tag: 6
+            value: 10.0.0.254
+          - tag: 7
+            value: 10.0.0.254
+    hosts:
+      - name: mymac
+        mac: "2c:c2:60:5b:59:d5"
+        address: 10.200.0.90
+        lease: 1h
+  dns:
+    a:
+      - name: bpa-01.sandbox-01.examplenet.com
+        value:
+          - 10.0.0.1
+          - 10.0.0.2
+          - 10.0.0.3
+        ttl: 3h
+      - name: bpa-02.sandbox-01.examplenet.com
+        value:
+          - 10.0.1.1
+        ttl: 3h
+    cname:
+      bpa-lan:
+        value:
+          - bpa-01.
+    host:
+      bpa:
+        value:
+          - 10.0.2.100
+          - 10.0.3.100
+        ttl: 3h

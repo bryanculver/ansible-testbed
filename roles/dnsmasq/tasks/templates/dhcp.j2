@@ -1,0 +1,19 @@
+domain=examplenet.com
+dhcp-authoritative
+
+{% for range in dnsmasq.dhcp.ranges %}
+
+dhcp-range={{ range.name }},{{ range.range_start }},{{ range.range_end }},{% if range.lease is defined %}{{ range.lease }}{% else %}24h{% endif %}
+
+{% if range.options is defined %}
+{% for option in range.options %}
+dhcp-option={{ range.name }},{{ option.tag }},{{ option.value }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% for host in dnsmasq.dhcp.hosts %}
+
+dhcp-host={{ host.mac }},{{ host.name }},{{ host.address }},{% if host.lease is defined %}{{ host.lease }}{% else %}24h{% endif %}
+
+{% endfor %}

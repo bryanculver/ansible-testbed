@@ -1,0 +1,10 @@
+---
+- name: DEBUG
+  hosts: all
+  tasks:
+     - debug:
+        msg: "{{ hostvars[inventory_hostname] }}"
+     - debug:
+        msg: "{{ vars }}"
+     - debug:
+        msg: "{{ dnsmasq }}"
