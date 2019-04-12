@@ -3,6 +3,6 @@ addn-hosts=/etc/dnsmasq.hosts
 {% for record in dnsmasq.dns.cname %}
 cname={{ record.name }},{{ record.value }} 
 {% endfor %}
-{% for record in dnsmasq.dns.cname %}
+{% for record in dnsmasq.dns.host %}
 host-record={{ record.name }},{{ record.value }}{% if record.ttl is defined %},{{ record.lease }}{% endif %}
 {% endfor %}
