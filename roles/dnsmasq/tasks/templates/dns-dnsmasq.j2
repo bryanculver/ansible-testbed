@@ -1,0 +1,8 @@
+address=/#/127.0.0.1
+addn-hosts=/etc/dnsmasq.hosts
+{% for record in dnsmasq.dns.cname %}
+cname={{ record.name }},{{ record.value }} 
+{% endfor %}
+{% for record in dnsmasq.dns.cname %}
+host-record={{ record.name }},{{ record.value }}{% if record.ttl is defined %},{{ record.lease }}{% endif %}
+{% endfor %}

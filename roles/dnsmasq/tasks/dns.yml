@@ -1,2 +1,4 @@
 - name: "Create DNS Config"
-  template: src=./templates/dns.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/{{ inventory_hostname }}_DNS.cfg
+  template: src=./templates/dns-dnsmasq.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/{{ inventory_hostname }}_DNS.dnsmasq.cfg
+- name: "Create Hosts File"
+  template: src=./templates/dns-hosts.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/{{ inventory_hostname }}_DNS.hosts.cfg

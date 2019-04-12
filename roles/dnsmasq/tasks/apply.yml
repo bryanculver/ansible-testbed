@@ -22,6 +22,14 @@
     owner: root
     group: root
     mode: 0644
+- name: "Copy Config File to /etc"
+  become: yes
+  copy:
+    src: ./build/{{ inventory_hostname }}/dnsmasq.hosts
+    dest: /etc/dnsmasq.hosts
+    owner: root
+    group: root
+    mode: 0644
 - name: "Restart DNSMASQ"
   become: yes
   service: name=dnsmasq state=restarted

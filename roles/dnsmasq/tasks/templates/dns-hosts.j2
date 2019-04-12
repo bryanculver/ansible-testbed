@@ -1,0 +1,7 @@
+{% for record in dnsmasq.dns.a %}
+{% for address in record.value %}
+
+{{ address }} {{ address.name }} 
+
+{% endfor %}
+{% endfor %}

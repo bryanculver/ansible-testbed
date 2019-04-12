@@ -48,18 +48,13 @@ dnsmasq:
           - 10.0.0.1
           - 10.0.0.2
           - 10.0.0.3
-        ttl: 3h
       - name: bpa-02.sandbox-01.examplenet.com
         value:
           - 10.0.1.1
-        ttl: 3h
     cname:
-      bpa-lan:
-        value:
-          - bpa-01.
+      - name: bpa-lan
+        value: bpa-01.sandbox-01.examplenet.com
     host:
-      bpa:
-        value:
-          - 10.0.2.100
-          - 10.0.3.100
+      - name: bpa
+        value: 10.0.2.100
         ttl: 3h

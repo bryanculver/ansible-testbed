@@ -2,5 +2,9 @@
   file: path=./build/{{ inventory_hostname }}/ state=directory
 - name: "Assemble Config File"
   assemble:
-    src: ./staging/{{ inventory_hostname }}/dnsmasq
+    src: ./staging/{{ inventory_hostname }}/dnsmasq/*.dnsmasq.conf
     dest: ./build/{{ inventory_hostname }}/dnsmasq.conf
+- name: "Assemble Hosts File"
+  assemble:
+    src: ./staging/{{ inventory_hostname }}/dnsmasq/*.hosts.conf
+    dest: ./build/{{ inventory_hostname }}/dnsmasq.hosts
