@@ -1,4 +1,6 @@
-- name: "Create Staging Folder"
-  file: path=./staging/{{ inventory_hostname }}/dnsmasq/ state=directory
+- name: "Create Config Staging Folder"
+  file: path=./staging/{{ inventory_hostname }}/dnsmasq/config/ state=directory
+- name: "Create Hosts Staging Folder"
+  file: path=./staging/{{ inventory_hostname }}/dnsmasq/hosts/ state=directory
 - name: "Create Base Config"
-  template: src=./templates/base.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/{{ inventory_hostname }}_base.dnsmasq.cfg
+  template: src=./templates/base.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/config/{{ inventory_hostname }}_base.cfg
