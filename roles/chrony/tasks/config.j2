@@ -2,7 +2,7 @@ initstepslew 1 client1 client3 client6
 driftfile /var/lib/chrony/drift
 bindaddress {{ chrony.bindaddress }}
 
-{% for net in chony.allow %}
+{% for net in chrony.allow %}
 allow {{ net }}
 
 {% endfor %}
