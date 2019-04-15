@@ -1,0 +1,21 @@
+- name: "Open Syslog Firewall Port"
+  become: yes
+  firewalld:
+    service: syslog
+    permanent: yes
+    state: enabled
+    immediate: true
+- name: "Copy Config File to /etc"
+  become: yes
+  copy:
+    src: ./build/{{ inventory_hostname }}/rsyslog.conf
+    dest: /etc/rsyslog.d/server.conf
+    owner: root
+    group: root
+    mode: 0644
+- name: "Restart Rsyslog"
+  become: yes
+  service:
+    name: rsyslog
+    state: started
+    enabled: yes

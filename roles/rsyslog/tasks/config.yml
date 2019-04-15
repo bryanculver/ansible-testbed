@@ -1,0 +1,4 @@
+- name: "Create Config Staging Folder"
+  file: path=./staging/{{ inventory_hostname }}/rsyslog/config/ state=directory
+- name: "Create Config"
+  template: src=./config.j2 dest=./build/{{ inventory_hostname }}/rsyslog.conf

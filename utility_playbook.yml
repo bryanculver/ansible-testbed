@@ -4,3 +4,4 @@
   roles:
     - dnsmasq
     - chrony
+    - rsyslog
