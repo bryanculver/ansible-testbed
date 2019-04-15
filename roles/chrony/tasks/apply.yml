@@ -24,4 +24,7 @@
   command: date --iso-8601=seconds -s "{{ lookup('pipe','date --iso-8601=seconds') }}"
 - name: "Start Chrony"
   become: yes
-  service: name=chronyd state=started enabled= yes
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
