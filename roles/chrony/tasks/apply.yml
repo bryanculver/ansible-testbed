@@ -1,0 +1,24 @@
+# - name: "Open NTP Firewall Port"
+#   become: yes
+#   firewalld:
+#     service: ntp
+#     permanent: yes
+#     state: enabled
+#     immediate: true
+# - name: "Copy Config File to /etc"
+#   become: yes
+#   copy:
+#     src: ./build/{{ inventory_hostname }}/chrony.cfg
+#     dest: /etc/chrony
+#     owner: root
+#     group: root
+#     mode: 0644
+# - name: "Stop Chrony"
+#   become: yes
+#   service: name=chronyd state=stop
+- name: "Disable NTP"
+  become: yes
+  command: timedatectl set-ntp no
+- name: "Update Time"
+  become: yes
+  command: date --iso-8601=seconds -s "{{ansible_date_time.iso8601}}"
