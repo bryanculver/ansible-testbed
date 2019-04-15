@@ -1,8 +1,14 @@
 initstepslew 1 client1 client3 client6
 driftfile /var/lib/chrony/drift
-bindaddress X
-allow X
+bindaddress {{ chrony.bindaddress }}
+
+{% for net in chony.allow %}
+allow {{ net }}
+
+{% endfor %}
+
 local stratum 5
 manual
 smoothtime 400 0.01
 rtcsync
+logdir /var/log/chrony

@@ -1,4 +1,4 @@
-# - import_tasks: install.yml
-# - import_tasks: config.yml
-#   connection: local
+- import_tasks: install.yml
+- import_tasks: config.yml
+  connection: local
 - import_tasks: apply.yml
