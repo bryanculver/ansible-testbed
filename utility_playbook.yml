@@ -2,5 +2,4 @@
 - name: Utility Server Playbook
   hosts: all
   roles:
-    - dnsmasq
     - chrony

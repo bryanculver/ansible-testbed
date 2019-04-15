@@ -21,4 +21,4 @@
   command: timedatectl set-ntp no
 - name: "Update Time"
   become: yes
-  command: date --iso-8601=seconds -s "{{ansible_date_time.iso8601}}"
+  command: date --iso-8601=seconds -s "{{ lookup('pipe','date --iso-8601=seconds') }}"
