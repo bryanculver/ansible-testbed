@@ -52,9 +52,9 @@ dnsmasq:
         value:
           - 10.0.1.1
     cname:
-      - name: bpa-lan
+      - name: bpa-lan.sandbox-01.examplenet.com
         value: bpa-01.sandbox-01.examplenet.com
     host:
-      - name: bpa
+      - name: bpa.sandbox-01.examplenet.com
         value: 10.0.2.100
         ttl: 3h
