@@ -2,6 +2,6 @@ $ModLoad imudp
 $UDPServerRun 514
 $ModLoad imtcp
 $InputTCPServerRun 514
-$template FromIp,"/var/log/%FROMHOST-IP%.log" 
-if ($hostname != 'localhost') then ?FromIp
+$template FromIp,"/var/log/%fromhost-ip%.log"
+if ($fromhost-ip != '127.0.0.1') then ?FromIp
 & ~ 
