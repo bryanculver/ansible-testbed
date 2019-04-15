@@ -8,7 +8,7 @@
 - name: "Copy Config File to /etc"
   become: yes
   copy:
-    src: ./build/{{ inventory_hostname }}/chrony.cfg
+    src: ./build/{{ inventory_hostname }}/chrony.conf
     dest: /etc/chrony.conf
     owner: root
     group: root
