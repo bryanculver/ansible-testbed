@@ -1,0 +1,39 @@
+
+accounting file = /var/log/tac.acct
+
+group = admins {
+  default service = permit
+  service = exec {
+    priv-lvl = 15
+  }
+}
+
+group = guests {
+  default service = deny
+  service = exec {
+    priv-lvl = 15
+  }
+  cmd = show {
+    permit .*
+  }
+  cmd = exit {
+    permit .*
+  }
+  cmd = quit {
+    permit .*
+  }
+  cmd = end {
+    permit .*
+  }
+
+}
+
+user = admin {
+  login = des XRIx/LYLHjMKo
+  member = admins
+}
+
+user = guest {
+  login = des 1DWqrRbskWL/o
+  member = guests
+}
