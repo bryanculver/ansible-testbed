@@ -1,6 +1,7 @@
 - name: Add tac_plus repostory
   yum_repository:
     name: tac_plus
+    description: "tac_plus repository"
     baseurl: http://li.nux.ro/download/nux/misc/el6/x86_64/
     enabled: no
     gpgcheck: yes
