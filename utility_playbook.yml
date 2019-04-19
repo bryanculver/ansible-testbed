@@ -5,3 +5,4 @@
     - dnsmasq
     - chrony
     - rsyslog
+    - tac_plus

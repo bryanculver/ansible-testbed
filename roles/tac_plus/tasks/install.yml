@@ -1,0 +1,15 @@
+- name: Add tac_plus repostory
+  yum_repository:
+    name: tac_plus
+    baseurl: http://li.nux.ro/download/nux/misc/el6/x86_64/
+    enabled: no
+    gpgcheck: yes
+    gpgkey: http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+  when: ansible_facts['os_family']|lower == 'redhat'
+- name: "Install tac_plus - Redhat"
+  become: yes
+  yum:
+    name: "rsyslog"
+    state: present
+    enablerepo: "tac_plus"
+  when: ansible_facts['os_family']|lower == 'redhat'
