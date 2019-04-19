@@ -1,4 +1,5 @@
 - name: Add tac_plus repostory
+  become: yes
   yum_repository:
     name: tac_plus
     description: "tac_plus repository"
