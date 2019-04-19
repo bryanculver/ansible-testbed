@@ -11,7 +11,7 @@
 - name: "Install tac_plus - Redhat"
   become: yes
   yum:
-    name: "rsyslog"
+    name: "tac_plus"
     state: present
     enablerepo: "tac_plus"
   when: ansible_facts['os_family']|lower == 'redhat'
