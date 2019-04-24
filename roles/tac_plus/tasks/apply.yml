@@ -1,21 +1,21 @@
 - name: "Open Tacacs Firewall Port"
   become: yes
   firewalld:
-    port: 49/tcp
+    immediate: yes
+    port: "49/tcp"
     permanent: yes
-    state: enabled
-    immediate: true
+    state: "enabled"
 - name: "Copy Config File to /etc"
   become: yes
   copy:
-    src: ./build/{{ inventory_hostname }}/tac_plus.conf
-    dest: /etc/tac_plus.conf
-    owner: root
-    group: root
-    mode: 0644
+    dest: "/etc/tac_plus.conf"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/tac_plus.conf"
 - name: "Restart tac_plus"
   become: yes
   service:
-    name: tac_plus
-    state: started
     enabled: yes
+    name: "tac_plus"
+    state: started

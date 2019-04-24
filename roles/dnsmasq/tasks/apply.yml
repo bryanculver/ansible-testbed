@@ -1,35 +1,38 @@
 - name: "Open DHCP Firewall Port"
   become: yes
   firewalld:
-    service: dhcp
+    immediate: yes
     permanent: yes
-    state: enabled
-    immediate: true
-  when: dnsmasq.dhcp is defined
+    service: "dhcp"
+    state: "enabled"
+  when: "dnsmasq.dhcp is defined"
 - name: "Open DNS Firewall Port"
   become: yes
   firewalld:
-    service: dns
+    immediate: yes
     permanent: yes
-    state: enabled
-    immediate: true
-  when: dnsmasq.dns is defined
+    service: "dns"
+    state: "enabled"
+  when: "dnsmasq.dns is defined"
 - name: "Copy Config File to /etc"
   become: yes
   copy:
-    src: ./build/{{ inventory_hostname }}/dnsmasq.conf
-    dest: /etc/dnsmasq.conf
-    owner: root
-    group: root
-    mode: 0644
+    dest: "/etc/dnsmasq.conf"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/dnsmasq.conf"
 - name: "Copy Config File to /etc"
   become: yes
   copy:
-    src: ./build/{{ inventory_hostname }}/dnsmasq.hosts
-    dest: /etc/dnsmasq.hosts
-    owner: root
-    group: root
-    mode: 0644
+    dest: "/etc/dnsmasq.hosts"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/dnsmasq.hosts"
 - name: "Restart DNSMASQ"
   become: yes
-  service: name=dnsmasq state=restarted
+  service:
+    enabled: yes
+    name: "dnsmasq"
+    state: "restarted"

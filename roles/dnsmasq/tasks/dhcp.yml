@@ -1,2 +1,4 @@
 - name: "Create DHCP Config"
-  template: src=./templates/dhcp.j2 dest=./staging/{{ inventory_hostname }}/dnsmasq/config/{{ inventory_hostname }}_DHCP.cfg
+  template:
+    dest: "./staging/{{ inventory_hostname }}/dnsmasq/config/{{ inventory_hostname }}_DHCP.cfg"
+    src: "./templates/dhcp.j2"

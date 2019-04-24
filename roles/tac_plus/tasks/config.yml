@@ -1,2 +1,4 @@
 - name: "Create Config"
-  template: src=./config.j2 dest=./build/{{ inventory_hostname }}/tac_plus.conf
+  template:
+    src: "./config.j2"
+    dest: "./build/{{ inventory_hostname }}/tac_plus.conf"

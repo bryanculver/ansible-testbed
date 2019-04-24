@@ -1,4 +1,10 @@
 ---
+chrony:
+  bindaddress: 10.0.0.254
+  allow:
+    - 10.0.0.1/24
+    - 10.0.1.1/24
+    - 10.0.2.1/24
 dnsmasq:
   interfaces:
     - ens2
@@ -58,9 +64,3 @@ dnsmasq:
       - name: bpa.sandbox-01.examplenet.com
         value: 10.0.2.100
         ttl: 3h
-chrony:
-  bindaddress: 10.0.0.254
-  allow:
-    - 10.0.0.1/24
-    - 10.0.1.1/24
-    - 10.0.2.1/24

@@ -1,30 +1,32 @@
 - name: "Open NTP Firewall Port"
   become: yes
   firewalld:
-    service: ntp
+    immediate: yes
     permanent: yes
-    state: enabled
-    immediate: true
+    service: "ntp"
+    state: "enabled"
 - name: "Copy Config File to /etc"
   become: yes
   copy:
-    src: ./build/{{ inventory_hostname }}/chrony.conf
-    dest: /etc/chrony.conf
-    owner: root
-    group: root
-    mode: 0644
+    dest: "/etc/chrony.conf"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/chrony.conf"
 - name: "Stop Chrony"
   become: yes
-  service: name=chronyd state=stopped
+  service:
+    name: "chronyd"
+    state: "stopped"
 - name: "Disable NTP"
   become: yes
-  command: timedatectl set-ntp no
+  command: "timedatectl set-ntp no"
 - name: "Update Time"
   become: yes
-  command: date --iso-8601=seconds -s "{{ lookup('pipe','date --iso-8601=seconds') }}"
+  command: "date --iso-8601=seconds -s \"{{ lookup('pipe','date --iso-8601=seconds') }}\""
 - name: "Start Chrony"
   become: yes
   service:
-    name: chronyd
-    state: started
     enabled: yes
+    name: "chronyd"
+    state: "started"

@@ -1,0 +1,8 @@
+---
+- name: "Utility Server Playbook"
+  hosts: "all"
+  roles:
+    - "chrony"
+    - "dnsmasq"
+    - "rsyslog"
+    - "tac_plus"

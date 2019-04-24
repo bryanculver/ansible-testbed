@@ -1,8 +1,0 @@
----
-- name: Utility Server Playbook
-  hosts: all
-  roles:
-    - dnsmasq
-    - chrony
-    - rsyslog
-    - tac_plus

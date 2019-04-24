@@ -5,8 +5,6 @@
      - debug:
         msg: "{{ hostvars[inventory_hostname] }}"
      - debug:
-        msg: "{{ hostvars['localhost'] }}"
-     - debug:
         msg: "{{ vars }}"
      - debug:
         msg: "{{ dnsmasq }}"
