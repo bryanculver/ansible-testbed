@@ -1,4 +1,8 @@
+- name: "Create Build Folder"
+  file:
+    path: "./build/{{ inventory_hostname }}/"
+    state: "directory"
 - name: "Create Config"
   template:
-    src: "./config.j2"
     dest: "./build/{{ inventory_hostname }}/tac_plus.conf"
+    src: "./config.j2"

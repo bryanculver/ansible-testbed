@@ -1,7 +1,7 @@
-- name: "Create Config Staging Folder"
+- name: "Create Build Folder"
   file:
+    path: "./build/{{ inventory_hostname }}/"
     state: "directory"
-    path: "./staging/{{ inventory_hostname }}/rsyslog/config/"
 - name: "Create Config"
   template:
     dest: "./build/{{ inventory_hostname }}/rsyslog.conf"
