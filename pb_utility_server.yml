@@ -2,4 +2,8 @@
 - name: "Utility Server Playbook"
   hosts: "all"
   roles:
+    - "chrony"
+    - "dnsmasq"
     - "openldap"
+    - "rsyslog"
+    - "tac_plus"
