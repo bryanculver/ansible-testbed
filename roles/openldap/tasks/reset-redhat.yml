@@ -4,11 +4,6 @@
     enabled: no
     name: "slapd"
     state: "stopped"
-- name: "Remove OpenLDAP - Redhat"
-  become: yes
-  yum:
-    name: "openldap"
-    state: "absent"
 - name: "Remove OpenLDAP-Clients - Redhat"
   become: yes
   yum:
@@ -27,7 +22,17 @@
 - name: "Reset LDAP"
   become: yes
   file:
-    path: "/etc/openldap"
+    path: "/etc/openldap/slapd.d/"
+    state: "absent"
+- name: "Reset LDAP"
+  become: yes
+  file:
+    path: "/etc/openldap/schema/conf.ldif"
+    state: "absent"
+- name: "Reset LDAP"
+  become: yes
+  file:
+    path: "/etc/openldap/schema/base.ldif"
     state: "absent"
 - name: "Remove ldap user"
   become: yes
