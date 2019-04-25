@@ -25,6 +25,7 @@
     owner: "root"
     src: "./build/{{ inventory_hostname }}/openldap/base.ldif"
 - name: "Copy Users .ldif Files"
+  become: yes
   copy:
     dest: "/etc/openldap/schema/user-{{ new_ldap_user_name }}.ldif"
     group: "root"
