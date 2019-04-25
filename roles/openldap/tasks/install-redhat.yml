@@ -1,0 +1,30 @@
+- name: "Install OpenLDAP - Redhat"
+  become: yes
+  yum:
+    name: "openldap"
+    state: "present"
+- name: "Install OpenLDAP-Compat - Redhat"
+  become: yes
+  yum:
+    name: "compat-openldap"
+    state: "present"
+- name: "Install OpenLDAP-Clients - Redhat"
+  become: yes
+  yum:
+    name: "openldap-clients"
+    state: "present"
+- name: "Install OpenLDAP-Servers - Redhat"
+  become: yes
+  yum:
+    name: "openldap-servers"
+    state: "present"
+- name: "Install OpenLDAP-Servers-SQL - Redhat"
+  become: yes
+  yum:
+    name: "openldap-servers-sql"
+    state: "present"
+- name: "Install OpenLDAP-Devel - Redhat"
+  become: yes
+  yum:
+    name: "openldap-devel"
+    state: "present"
