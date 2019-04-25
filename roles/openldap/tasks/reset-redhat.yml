@@ -17,7 +17,12 @@
 - name: "Reset LDAP"
   become: yes
   file:
-    path: /var/lib/ldap
+    path: "/var/lib/ldap"
+    state: "absent"
+- name: "Reset LDAP"
+  become: yes
+  file:
+    path: "/etc/openldap"
     state: "absent"
 - name: "Remove ldap user"
   become: yes
