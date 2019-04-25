@@ -29,6 +29,7 @@
     name: "openldap-devel"
     state: "present"
 - name: "Reset LDAP"
+  become: yes
   file:
     path: /var/lib/ldap
     state: absent
