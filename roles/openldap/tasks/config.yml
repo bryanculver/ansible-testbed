@@ -1,4 +1,12 @@
-- name: "Generate LDAP Root Password"
-  become: yes
-  command: "slappasswd -h {SSHA} -s {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
-  register: LDAP_ROOT
+- name: "Create Build Folder"
+  file:
+    path: "./build/{{ inventory_hostname }}/openldap/"
+    state: "directory"
+- name: "Create Config LDIF"
+  template:
+    dest: "./build/{{ inventory_hostname }}/openldap/conf.ldif"
+    src: "./templates/conf-ldif.j2"
+- name: "Create Base LDIF"
+  template:
+    dest: "./build/{{ inventory_hostname }}/openldap/base.ldif"
+    src: "./templates/base-ldif.j2"

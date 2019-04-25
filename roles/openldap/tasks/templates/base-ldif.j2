@@ -1,0 +1,17 @@
+dn: dc={{ openldap.domain }},dc={{ openldap.tld }}
+dc: {{ openldap.domain }}
+objectClass: top
+objectClass: domain
+
+dn: cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}
+objectClass: organizationalRole
+cn: {{ openldap.rootdn }}
+description: {{ openldap.rootdn_description }}
+
+dn: ou=users,dc={{ openldap.domain }},dc={{ openldap.tld }}
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Admins,dc={{ openldap.domain }},dc={{ openldap.tld }}
+objectClass: organizationalUnit
+ou: Admins

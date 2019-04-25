@@ -64,3 +64,8 @@ dnsmasq:
       - name: bpa.sandbox-01.examplenet.com
         value: 10.0.2.100
         ttl: 3h
+openldap:
+  tld: com
+  domain: examplenet
+  rootdn: Admin
+  rootdn_description: LDAP Root Admin

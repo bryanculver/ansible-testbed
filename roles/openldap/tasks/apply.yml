@@ -1,0 +1,52 @@
+#  
+
+
+- name: "Open LDAP Firewall Port"
+  become: yes
+  firewalld:
+    immediate: yes
+    permanent: yes
+    service: "ldap"
+    state: "enabled"
+- name: "Copy Config File to /etc"
+  become: yes
+  copy:
+    dest: "/etc/openldap/schema/conf.ldif"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/openldap/conf.ldif"
+- name: "Copy Config File to /etc"
+  become: yes
+  copy:
+    dest: "/etc/openldap/schema/base.ldif"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/openldap/base.ldif"
+- name: "Copy Config File to /etc"
+  become: yes
+  copy:
+    dest: "/var/lib/ldap/DB_CONFIG"
+    group: "ldap"
+    owner: "ldap"
+    remote_src: yes
+    src: "/usr/share/openldap-servers/DB_CONFIG.example"
+- name: "Apply conf.ldif"
+  become: yes
+  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/conf.ldif"
+- name: "Apply cosine.ldif"
+  become: yes
+  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif"
+- name: "Apply nis.ldif"
+  become: yes
+  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif"
+- name: "Apply inetorgperson.ldif"
+  become: yes
+  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif"
+- name: "Apply base.ldif"
+  become: yes
+  expect:
+    command: "ldapadd -x -W -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/base.ldif"
+    responses:
+      (?i)password: "{{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
