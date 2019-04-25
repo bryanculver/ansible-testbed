@@ -4,5 +4,6 @@
   roles:
     - "chrony"
     - "dnsmasq"
+    - "openldap"
     - "rsyslog"
     - "tac_plus"
