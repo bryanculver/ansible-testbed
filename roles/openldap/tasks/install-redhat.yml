@@ -28,9 +28,13 @@
   yum:
     name: "openldap-devel"
     state: "present"
+- name: "Reset LDAP"
+  file:
+    path: /var/lib/ldap
+    state: absent
 - name: "Start OpenLDAP"
   become: yes
   service:
     enabled: yes
     name: "slapd"
-    state: "started"
+    state: "restarted"
