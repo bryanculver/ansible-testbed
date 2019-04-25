@@ -1,0 +1,4 @@
+- name: "Generate LDAP Root Password"
+  become: yes
+  command: "slappasswd -h {SSHA} -s {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+  register: LDAP_ROOT

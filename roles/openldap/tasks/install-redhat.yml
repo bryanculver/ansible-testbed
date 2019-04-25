@@ -28,3 +28,9 @@
   yum:
     name: "openldap-devel"
     state: "present"
+- name: "Start OpenLDAP"
+  become: yes
+  service:
+    enabled: yes
+    name: "OpenLDAP"
+    state: "started"
