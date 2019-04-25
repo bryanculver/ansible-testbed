@@ -1,0 +1,17 @@
+dn: uid={{ new_ldap_user_name }},ou=users,dc={{ openldap.domain }},dc={{ openldap.tld }}
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: {{ new_ldap_user_name }}
+uid: {{ new_ldap_user_name }}
+uidNumber: 9999
+gidNumber: 100
+homeDirectory: /home/{{ new_ldap_user_name }}
+loginShell: /bin/bash
+gecos: {{ new_ldap_user_name }} [{{ new_ldap_user_name }}]
+userPassword: {crypt}x
+shadowLastChange: 17058
+shadowMin: 0
+shadowMax: 99999
+shadowWarning: 7

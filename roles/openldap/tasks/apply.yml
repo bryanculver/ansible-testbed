@@ -24,6 +24,16 @@
     mode: "0644"
     owner: "root"
     src: "./build/{{ inventory_hostname }}/openldap/base.ldif"
+- name: "Copy Users .ldif Files"
+  copy:
+    dest: "/etc/openldap/schema/user-{{ new_ldap_user_name }}.ldif"
+    group: "root"
+    mode: "0644"
+    owner: "root"
+    src: "./build/{{ inventory_hostname }}/openldap/users/{{ new_ldap_user_name }}.dif"
+  loop: "{{ openldap.users }}"
+  loop_control:
+    loop_var: new_ldap_user_name
 - name: "Copy DB_CONFIG File"
   become: yes
   copy:
@@ -47,3 +57,15 @@
 - name: "Apply base.ldif"
   become: yes
   command: "ldapadd -x -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/base.ldif -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+- name: "Apply Users .ldif"
+  become: yes
+  command: "ldapadd -x -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/user-{{ new_ldap_user_name }}.ldif -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+  loop: "{{ openldap.users }}"
+  loop_control:
+    loop_var: new_ldap_user_name
+- name: "Set Users Passwords"
+  become: yes
+  command: "ldappasswd -s {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/{{ new_ldap_user_name }}password length=12 chars=ascii_letters') }} -x \"uid={{ new_ldap_user_name }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/user-{{ new_ldap_user_name }}.ldif -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+  loop: "{{ openldap.users }}"
+  loop_control:
+    loop_var: new_ldap_user_name

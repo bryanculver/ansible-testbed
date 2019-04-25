@@ -10,3 +10,14 @@
   template:
     dest: "./build/{{ inventory_hostname }}/openldap/base.ldif"
     src: "./templates/base-ldif.j2"
+- name: "Create Build Folder"
+  file:
+    path: "./build/{{ inventory_hostname }}/openldap/users/"
+    state: "directory"
+- name: "Create Users"
+  template:
+    dest: "./build/{{ inventory_hostname }}/openldap/users/{{ new_ldap_user_name }}.dif"
+    src: "./templates/user-ldif.j2"
+  loop: "{{ openldap.users }}"
+  loop_control:
+    loop_var: new_ldap_user_name

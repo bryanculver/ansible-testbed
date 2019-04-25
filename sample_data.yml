@@ -69,3 +69,6 @@ openldap:
   domain: examplenet
   rootdn: Admin
   rootdn_description: LDAP Root Admin
+  users:
+    - userA
+    - userB
