@@ -46,7 +46,4 @@
   command: "ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif"
 - name: "Apply base.ldif"
   become: yes
-  expect:
-    command: "ldapadd -x -W -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/base.ldif"
-    responses:
-      (?i)password: "{{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+  command: "ldapadd -x -W -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -f /etc/openldap/schema/base.ldif -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
