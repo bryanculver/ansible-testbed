@@ -37,13 +37,13 @@
   command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/conf.ldif"
 - name: "Apply cosine.ldif"
   become: yes
-  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif"
+  command: "ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif"
 - name: "Apply nis.ldif"
   become: yes
-  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif"
+  command: "ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif"
 - name: "Apply inetorgperson.ldif"
   become: yes
-  command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif"
+  command: "ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif"
 - name: "Apply base.ldif"
   become: yes
   expect:
