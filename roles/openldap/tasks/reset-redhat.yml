@@ -1,0 +1,26 @@
+- name: "Stopped OpenLDAP"
+  become: yes
+  service:
+    enabled: no
+    name: "slapd"
+    state: "stopped"
+- name: "Remove OpenLDAP-Clients - Redhat"
+  become: yes
+  yum:
+    name: "openldap-clients"
+    state: "absent"
+- name: "Remove OpenLDAP-Servers - Redhat"
+  become: yes
+  yum:
+    name: "openldap-servers"
+    state: "absent"
+- name: "Reset LDAP"
+  become: yes
+  file:
+    path: /var/lib/ldap
+    state: "absent"
+- name: "Remove ldap user"
+  become: yes
+  user:
+    name: "ldap"
+    state: "absent"
