@@ -66,7 +66,7 @@
     loop_var: new_ldap_user_name
 - name: "Set Users Passwords"
   become: yes
-  command: "ldappasswd -s {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/{{ new_ldap_user_name }}password length=12 chars=ascii_letters') }} -x \"uid={{ new_ldap_user_name }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
+  command: "ldappasswd -s {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/{{ new_ldap_user_name }}password length=12 chars=ascii_letters') }} -x \"uid={{ new_ldap_user_name }},ou=users,dc={{ openldap.domain }},dc={{ openldap.tld }}\" -D \"cn={{ openldap.rootdn }},dc={{ openldap.domain }},dc={{ openldap.tld }}\" -w {{ lookup('password', 'credentials/' + inventory_hostname + '/openldap/rootpassword length=12 chars=ascii_letters') }}"
   loop: "{{ openldap.users }}"
   loop_control:
     loop_var: new_ldap_user_name
