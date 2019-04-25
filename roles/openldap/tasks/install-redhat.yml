@@ -43,4 +43,4 @@
   become: yes
   file:
     path: /var/lib/ldap
-    state: present
+    state: directory
