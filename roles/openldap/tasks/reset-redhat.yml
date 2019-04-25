@@ -4,6 +4,11 @@
     enabled: no
     name: "slapd"
     state: "stopped"
+- name: "Remove OpenLDAP - Redhat"
+  become: yes
+  yum:
+    name: "openldap"
+    state: "absent"
 - name: "Remove OpenLDAP-Clients - Redhat"
   become: yes
   yum:
