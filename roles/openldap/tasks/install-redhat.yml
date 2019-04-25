@@ -28,14 +28,14 @@
   yum:
     name: "openldap-devel"
     state: "present"
+- name: "Stopped OpenLDAP"
+  become: yes
+  service:
+    enabled: yes
+    name: "slapd"
+    state: "stopped"
 - name: "Reset LDAP"
   become: yes
   file:
     path: /var/lib/ldap
     state: absent
-- name: "Start OpenLDAP"
-  become: yes
-  service:
-    enabled: yes
-    name: "slapd"
-    state: "restarted"

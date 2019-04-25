@@ -32,6 +32,12 @@
     owner: "ldap"
     remote_src: yes
     src: "/usr/share/openldap-servers/DB_CONFIG.example"
+- name: "Start OpenLDAP"
+  become: yes
+  service:
+    enabled: yes
+    name: "slapd"
+    state: "stopped"
 - name: "Apply conf.ldif"
   become: yes
   command: "ldapmodify -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/conf.ldif"
