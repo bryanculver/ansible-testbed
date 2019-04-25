@@ -39,3 +39,8 @@
   file:
     path: /var/lib/ldap
     state: absent
+- name: "Create LDAP Lib folder"
+  become: yes
+  file:
+    path: /var/lib/ldap
+    state: present

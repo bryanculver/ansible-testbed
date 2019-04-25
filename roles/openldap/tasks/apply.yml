@@ -8,7 +8,7 @@
     permanent: yes
     service: "ldap"
     state: "enabled"
-- name: "Copy Config File to /etc"
+- name: "Copy conf.ldif File"
   become: yes
   copy:
     dest: "/etc/openldap/schema/conf.ldif"
@@ -16,7 +16,7 @@
     mode: "0644"
     owner: "root"
     src: "./build/{{ inventory_hostname }}/openldap/conf.ldif"
-- name: "Copy Config File to /etc"
+- name: "Copy base.ldif File"
   become: yes
   copy:
     dest: "/etc/openldap/schema/base.ldif"
@@ -24,7 +24,7 @@
     mode: "0644"
     owner: "root"
     src: "./build/{{ inventory_hostname }}/openldap/base.ldif"
-- name: "Copy Config File to /etc"
+- name: "Copy DB_CONFIG File"
   become: yes
   copy:
     dest: "/var/lib/ldap/DB_CONFIG"
